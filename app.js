@@ -6,9 +6,9 @@
 
 /* ---------- misure della linea del tempo (in pixel) ---------- */
 const MARGINE = 70;        // spazio vuoto a sinistra e a destra
-const LARGHEZZA_CARTA = 178;
-const ALTEZZA_CARTA = 74;
-const DISTANZA_CARTE = 10;
+const LARGHEZZA_CARTA = 190;
+const ALTEZZA_CARTA = 102;
+const DISTANZA_CARTE = 12;
 const ALTEZZA_ASSE = 54;   // a che altezza sta il filo del tempo
 const STACCO_ASSE = 30;    // spazio fra il filo e la prima fila di cartelline
 
@@ -19,8 +19,8 @@ const ZOOM_MASSIMO = 160;
 
 /* ---------- colori assegnati automaticamente alle categorie ---------- */
 const PALETTE = [
-  '#1f6f6b', '#9c5a1e', '#8a2f39', '#3c4f8f',
-  '#5a6b1f', '#6b3f7a', '#b06a12', '#2f6b8a'
+  '#0f766e', '#b45309', '#be123c', '#4f46e5',
+  '#15803d', '#7e22ce', '#0369a1', '#be185d'
 ];
 const coloreDi = {};   // esempio: { Economia: '#1f6f6b', ... }
 

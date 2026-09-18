@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Il Seicento in Europa e in America</title>
+<!-- l'icona della scheda del browser: un piccolo disegno fatto qui dentro -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f46e5'/%3E%3Crect x='7' y='30' width='50' height='4' rx='2' fill='%23ffffff'/%3E%3Ccircle cx='18' cy='32' r='6.5' fill='%2314b8a6'/%3E%3Ccircle cx='32' cy='32' r='6.5' fill='%23f59e0b'/%3E%3Ccircle cx='46' cy='32' r='6.5' fill='%23f43f5e'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="stile.css">
 </head>
 <body>
@@ -86,9 +88,11 @@
 <div id="velo" class="velo" hidden></div>
 <aside id="scheda" class="scheda" hidden aria-label="Scheda dell'evento">
   <button id="chiudi-scheda" class="chiudi" type="button" aria-label="Chiudi la scheda">&times;</button>
-  <p id="scheda-anno" class="scheda-anno"></p>
-  <h2 id="scheda-titolo"></h2>
-  <p id="scheda-categoria" class="scheda-categoria"></p>
+  <div class="scheda-testa">
+    <p id="scheda-anno" class="scheda-anno"></p>
+    <h2 id="scheda-titolo"></h2>
+    <p id="scheda-categoria" class="scheda-categoria"></p>
+  </div>
   <p id="scheda-descrizione" class="scheda-descrizione"></p>
 </aside>
 

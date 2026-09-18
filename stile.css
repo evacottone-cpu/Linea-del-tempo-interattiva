@@ -1,237 +1,315 @@
 /* =========================================================
    Linea del tempo interattiva - foglio di stile
-   Nessuna libreria esterna: solo CSS scritto a mano.
+   Stile chiaro e vivace. Nessuna libreria, nessun font
+   scaricato da internet: usiamo i caratteri del computer.
    ========================================================= */
 
 :root {
   --carta: #ffffff;
-  --sfondo: #f4f1ea;
-  --inchiostro: #2b2a26;
-  --inchiostro-tenue: #6b675e;
-  --bordo: #ded8cb;
-  --ombra: 0 1px 3px rgba(0,0,0,.12), 0 6px 18px rgba(0,0,0,.06);
-  --raggio: 10px;
-  --accento: #7a4a2b;
+  --sfondo: #eef2f9;
+  --sfondo-2: #f8fafc;
+  --inchiostro: #16213a;
+  --inchiostro-tenue: #5b6780;
+  --bordo: #dce3ee;
+  --ombra: 0 2px 4px rgba(22,33,58,.06), 0 10px 24px rgba(22,33,58,.09);
+  --ombra-alta: 0 8px 18px rgba(22,33,58,.14), 0 20px 40px rgba(22,33,58,.12);
+  --raggio: 16px;
+  --accento: #4f46e5;
+  --accento-2: #0f766e;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: var(--sfondo);
+  min-height: 100vh;
+  background:
+    radial-gradient(1100px 500px at 12% -8%, #e0e7ff 0%, transparent 60%),
+    radial-gradient(900px 460px at 92% 4%, #ccfbf1 0%, transparent 58%),
+    linear-gradient(180deg, var(--sfondo-2) 0%, var(--sfondo) 100%);
+  background-attachment: fixed;
   color: var(--inchiostro);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
   line-height: 1.5;
 }
 
 /* ---------------- testata ---------------- */
 
 .testata {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 20px;
-  background: var(--carta);
-  border-bottom: 3px solid var(--accento);
+  padding: 22px 24px 24px;
+  background: linear-gradient(115deg, #4f46e5 0%, #7c3aed 45%, #0f766e 100%);
+  color: #fff;
+  box-shadow: var(--ombra);
+}
+
+/* la striscia colorata sotto la testata */
+.testata::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 5px;
+  background: linear-gradient(90deg,
+    #0f766e 0%, #0369a1 25%, #4f46e5 50%, #be185d 75%, #b45309 100%);
 }
 
 .testata h1 {
   margin: 0;
-  font-size: 1.6rem;
-  letter-spacing: .2px;
+  font-size: clamp(1.4rem, 3.4vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  text-shadow: 0 2px 10px rgba(0,0,0,.18);
 }
 
 .sottotitolo {
-  margin: 2px 0 0;
-  color: var(--inchiostro-tenue);
-  font-style: italic;
+  margin: 4px 0 0;
+  font-size: 1rem;
+  color: rgba(255,255,255,.88);
+  letter-spacing: .02em;
 }
 
-.modi { display: flex; gap: 8px; }
+.modi { display: flex; gap: 10px; }
 
 /* ---------------- pulsanti ---------------- */
 
 button, select {
   font-family: inherit;
   font-size: .95rem;
+  font-weight: 600;
   color: var(--inchiostro);
   background: var(--carta);
-  border: 1px solid var(--bordo);
-  border-radius: var(--raggio);
-  padding: 7px 14px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 9px 18px;
   cursor: pointer;
+  box-shadow: 0 2px 6px rgba(22,33,58,.10);
+  transition: transform .15s ease, box-shadow .15s ease,
+              background-color .15s ease, color .15s ease;
 }
 
-button:hover, select:hover { border-color: var(--accento); }
+button:hover, select:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ombra);
+}
+
+button:active { transform: translateY(0); }
 
 button:focus-visible, select:focus-visible, .evento:focus-visible {
-  outline: 3px solid var(--accento);
-  outline-offset: 2px;
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
 }
 
-.modo.attivo {
-  background: var(--accento);
-  border-color: var(--accento);
+/* i due pulsanti in alto a destra */
+.modo {
+  background: rgba(255,255,255,.16);
   color: #fff;
+  border-color: rgba(255,255,255,.55);
+  box-shadow: none;
+}
+
+.modo:hover { background: rgba(255,255,255,.28); }
+
+.modo.attivo {
+  background: #fff;
+  color: var(--accento);
+  border-color: #fff;
 }
 
 .tondo {
-  width: 36px; height: 36px;
+  width: 42px; height: 42px;
   padding: 0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 700;
   line-height: 1;
 }
 
-.piccolo { padding: 6px 10px; font-size: .85rem; }
+.piccolo { padding: 8px 14px; font-size: .88rem; }
 
 .principale {
-  background: var(--accento);
-  border-color: var(--accento);
+  background: linear-gradient(120deg, var(--accento), #7c3aed);
   color: #fff;
   font-size: 1rem;
+  padding: 11px 22px;
+  box-shadow: 0 4px 14px rgba(79,70,229,.38);
 }
+
+.principale:hover { box-shadow: 0 8px 22px rgba(79,70,229,.45); }
 
 /* ---------------- barra degli strumenti ---------------- */
 
 .strumenti {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px 24px;
+  gap: 14px 24px;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px 6px;
+  padding: 20px 24px 10px;
 }
 
-.gruppo { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.gruppo { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
 .etichetta-gruppo {
-  font-size: .85rem;
+  font-size: .78rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .12em;
   color: var(--inchiostro-tenue);
 }
 
-.filtri { display: flex; flex-wrap: wrap; gap: 8px; }
+.filtri { display: flex; flex-wrap: wrap; gap: 10px; }
 
 /* pulsante di filtro: pallino colorato + nome della categoria */
 .filtro {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  border-radius: 999px;
-  padding: 5px 13px 5px 9px;
+  gap: 9px;
+  padding: 8px 18px 8px 13px;
+  border-color: var(--colore);
+  color: var(--colore);
 }
 
 .filtro::before {
   content: "";
-  width: 11px; height: 11px;
+  width: 13px; height: 13px;
   border-radius: 50%;
   background: var(--colore);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--colore) 18%, transparent);
 }
 
-.filtro.spento { opacity: .42; text-decoration: line-through; }
+.filtro.spento {
+  opacity: .5;
+  color: var(--inchiostro-tenue);
+  border-color: var(--bordo);
+  box-shadow: none;
+}
+
+.filtro.spento::before { background: var(--inchiostro-tenue); box-shadow: none; }
 
 .aiuto {
-  margin: 4px 20px 10px;
+  margin: 4px 24px 14px;
   color: var(--inchiostro-tenue);
-  font-size: .9rem;
-  font-style: italic;
+  font-size: .92rem;
 }
 
 /* ---------------- la linea del tempo ---------------- */
 
 .cornice {
   position: relative;
-  margin: 0 20px 24px;
+  margin: 0 24px 28px;
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 62vh;
-  background: var(--carta);
+  max-height: 64vh;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
   border: 1px solid var(--bordo);
-  border-radius: var(--raggio);
+  border-radius: 22px;
   box-shadow: var(--ombra);
   cursor: grab;
+  scrollbar-color: #c7d2e5 transparent;
 }
 
 .cornice.trascino { cursor: grabbing; }
 
-.tela { position: relative; min-height: 300px; }
+.tela { position: relative; min-height: 320px; }
 
-/* il filo orizzontale del tempo */
+/* il filo del tempo, con i colori delle categorie */
 .asse {
   position: absolute;
   left: 0; right: 0; top: 54px;
-  height: 3px;
-  background: var(--accento);
-  opacity: .5;
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    #0f766e 0%, #0369a1 25%, #4f46e5 50%, #be185d 75%, #b45309 100%);
+  opacity: .75;
 }
 
 .tacca {
   position: absolute;
-  top: 20px;
+  top: 16px;
   transform: translateX(-50%);
   text-align: center;
   color: var(--inchiostro-tenue);
-  font-size: .8rem;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .04em;
   white-space: nowrap;
 }
 
 .tacca::after {
   content: "";
   display: block;
-  width: 1px; height: 14px;
-  margin: 4px auto 0;
-  background: var(--bordo);
+  width: 2px; height: 12px;
+  margin: 5px auto 0;
+  border-radius: 2px;
+  background: #cbd5e6;
 }
 
-/* filo verticale che collega la cartellina all'anno esatto */
+/* filo verticale che collega il puntino alla cartellina */
 .stelo {
   position: absolute;
   width: 2px;
-  background: var(--colore);
-  opacity: .45;
+  background: linear-gradient(180deg, var(--colore), color-mix(in srgb, var(--colore) 25%, transparent));
 }
 
 .punto {
   position: absolute;
-  width: 9px; height: 9px;
-  margin-left: -4px;
+  width: 13px; height: 13px;
+  margin-left: -6px;
   border-radius: 50%;
   background: var(--colore);
-  border: 2px solid var(--carta);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--colore) 22%, transparent);
 }
 
 /* cartellina di un evento */
 .evento {
   position: absolute;
-  width: 178px;
+  width: 190px;
   text-align: left;
-  padding: 8px 10px;
+  padding: 10px 12px;
   background: var(--carta);
   border: 1px solid var(--bordo);
-  border-left: 5px solid var(--colore);
-  border-radius: 8px;
+  border-left: 6px solid var(--colore);
+  border-radius: 14px;
   box-shadow: var(--ombra);
-  transition: transform .12s ease;
+  overflow: hidden;
 }
 
-.evento:hover { transform: translateY(-2px); }
+.evento::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--colore);
+  opacity: 0;
+  transition: opacity .18s ease;
+  pointer-events: none;
+}
+
+.evento:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ombra-alta);
+}
+
+.evento:hover::after { opacity: .06; }
 
 .evento .anno {
   display: block;
-  font-size: .82rem;
-  font-weight: bold;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -.01em;
   color: var(--colore);
-  letter-spacing: .06em;
 }
 
 .evento .titolo {
   display: block;
   font-size: .92rem;
-  line-height: 1.25;
-  margin-top: 2px;
+  line-height: 1.28;
+  margin-top: 3px;
+  font-weight: 500;
   /* al massimo tre righe, poi i puntini */
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -239,16 +317,13 @@ button:focus-visible, select:focus-visible, .evento:focus-visible {
   overflow: hidden;
 }
 
-/* quando si nascondono gli anni (usato anche dal quiz) */
-.senza-anni .evento .anno,
-.senza-anni .tacca { visibility: hidden; }
-
 .messaggio {
-  margin: 0 20px 24px;
-  padding: 14px 16px;
-  background: #fff6e0;
-  border: 1px solid #e3cf9a;
+  margin: 0 24px 24px;
+  padding: 16px 18px;
+  background: #fff7ed;
+  border: 2px solid #fdba74;
   border-radius: var(--raggio);
+  box-shadow: var(--ombra);
 }
 
 /* ---------------- scheda dell'evento ---------------- */
@@ -256,75 +331,136 @@ button:focus-visible, select:focus-visible, .evento:focus-visible {
 .velo {
   position: fixed;
   inset: 0;
-  background: rgba(20,18,14,.45);
   z-index: 10;
+  background: rgba(15,23,42,.5);
+  backdrop-filter: blur(2px);
+  animation: sfuma .2s ease;
 }
+
+@keyframes sfuma { from { opacity: 0; } to { opacity: 1; } }
 
 .scheda {
   position: fixed;
   top: 0; right: 0; bottom: 0;
-  width: min(420px, 92vw);
+  width: min(440px, 94vw);
   z-index: 11;
   overflow-y: auto;
-  padding: 26px 26px 40px;
+  padding: 0 0 40px;
   background: var(--carta);
-  border-left: 8px solid var(--colore, var(--accento));
-  box-shadow: -8px 0 28px rgba(0,0,0,.18);
+  box-shadow: -10px 0 40px rgba(15,23,42,.28);
+  animation: entra-da-destra .26s cubic-bezier(.22,.8,.3,1);
+}
+
+@keyframes entra-da-destra {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+/* la fascia colorata in cima alla scheda */
+.scheda-testa {
+  padding: 26px 26px 22px;
+  background: linear-gradient(135deg,
+    var(--colore, var(--accento)),
+    color-mix(in srgb, var(--colore, var(--accento)) 62%, #000));
+  color: #fff;
 }
 
 .chiudi {
   position: absolute;
-  top: 12px; right: 12px;
-  width: 34px; height: 34px;
+  top: 14px; right: 14px;
+  width: 38px; height: 38px;
   padding: 0;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   line-height: 1;
-  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  color: #fff;
+  border-color: rgba(255,255,255,.5);
+  box-shadow: none;
 }
+
+.chiudi:hover { background: rgba(255,255,255,.34); }
 
 .scheda-anno {
-  margin: 6px 0 0;
-  font-size: 2.4rem;
-  font-weight: bold;
-  color: var(--colore, var(--accento));
+  margin: 0;
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.03em;
+  text-shadow: 0 2px 12px rgba(0,0,0,.2);
 }
 
-.scheda h2 { margin: 4px 0 10px; font-size: 1.35rem; line-height: 1.25; }
+.scheda h2 {
+  margin: 10px 0 12px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
 
 .scheda-categoria {
   display: inline-block;
-  margin: 0 0 16px;
-  padding: 3px 12px;
+  margin: 0;
+  padding: 5px 14px;
   border-radius: 999px;
-  background: var(--colore, var(--accento));
+  background: rgba(255,255,255,.22);
+  border: 1px solid rgba(255,255,255,.5);
   color: #fff;
-  font-size: .82rem;
-  letter-spacing: .05em;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 
-.scheda-descrizione { margin: 0; font-size: 1.02rem; }
+.scheda-descrizione {
+  margin: 0;
+  padding: 24px 26px 0;
+  font-size: 1.06rem;
+  line-height: 1.65;
+}
 
 /* ---------------- quiz ---------------- */
 
 .carte {
   list-style: none;
-  margin: 0 auto 40px;
-  padding: 0 20px;
-  max-width: 760px;
+  counter-reset: posizione;
+  margin: 0 auto 44px;
+  padding: 0 24px;
+  max-width: 800px;
 }
 
 .carta {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-  padding: 12px 14px;
+  gap: 14px;
+  margin-bottom: 12px;
+  padding: 14px 16px;
   background: var(--carta);
   border: 1px solid var(--bordo);
-  border-left: 6px solid var(--colore);
+  border-left: 7px solid var(--colore);
   border-radius: var(--raggio);
   box-shadow: var(--ombra);
   cursor: grab;
+  transition: box-shadow .15s ease, border-color .15s ease, background-color .15s ease;
+  animation: entra-dal-basso .28s ease both;
+}
+
+@keyframes entra-dal-basso {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* il numero di posizione, che si aggiorna da solo */
+.carta::before {
+  counter-increment: posizione;
+  content: counter(posizione);
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--colore) 14%, #fff);
+  color: var(--colore);
+  font-weight: 800;
+  font-size: .95rem;
 }
 
 /* la carta che si sta trascinando */
@@ -332,13 +468,14 @@ button:focus-visible, select:focus-visible, .evento:focus-visible {
   position: relative;
   z-index: 5;
   cursor: grabbing;
-  box-shadow: 0 10px 22px rgba(0,0,0,.22);
-  transform-origin: center;
+  border-color: var(--colore);
+  box-shadow: var(--ombra-alta);
+  animation: none;
 }
 
 .carta .presa {
-  color: var(--inchiostro-tenue);
-  font-size: 1.1rem;
+  color: #b7c1d4;
+  font-size: 1.15rem;
   letter-spacing: 2px;
   cursor: grab;
   padding: 4px 2px;
@@ -348,72 +485,95 @@ button:focus-visible, select:focus-visible, .evento:focus-visible {
 
 .carta .testo { flex: 1; }
 
-.carta .titolo-carta { font-size: 1rem; }
+.carta .titolo-carta { font-size: 1.02rem; font-weight: 600; }
 
 .carta .categoria-carta {
   display: block;
-  font-size: .8rem;
+  margin-top: 2px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
   color: var(--colore);
-  letter-spacing: .05em;
 }
 
 .carta .anno-svelato {
-  font-weight: bold;
-  font-size: 1.05rem;
+  font-weight: 800;
+  font-size: 1.25rem;
   white-space: nowrap;
+  animation: entra-dal-basso .3s ease both;
 }
 
-.carta .frecce { display: flex; flex-direction: column; gap: 4px; }
+.carta .frecce { display: flex; flex-direction: column; gap: 5px; }
 
 .carta .frecce button {
-  width: 30px; height: 24px;
+  width: 34px; height: 27px;
   padding: 0;
-  font-size: .8rem;
-  line-height: 1;
+  font-size: .75rem;
+  border-radius: 9px;
+  background: #f1f5fb;
+  box-shadow: none;
 }
 
-.carta.giusta { border-color: #2e7d4f; background: #f1f9f3; }
-.carta.giusta .segno { color: #2e7d4f; font-size: 1.2rem; }
-.carta.sbagliata { border-color: #b23b3b; background: #fdf3f2; }
-.carta.sbagliata .segno { color: #b23b3b; font-size: 1.2rem; }
+.carta .frecce button:hover { background: #e2e8f5; transform: none; }
 
-.segnaposto {
-  height: 10px;
-  margin-bottom: 10px;
-  border: 2px dashed var(--accento);
-  border-radius: 6px;
+.carta.giusta {
+  border-color: #16a34a;
+  background: linear-gradient(90deg, #f0fdf4, #ffffff 60%);
 }
+
+.carta.giusta .segno { color: #16a34a; font-size: 1.4rem; font-weight: 800; }
+
+.carta.sbagliata {
+  border-color: #dc2626;
+  background: linear-gradient(90deg, #fef2f2, #ffffff 60%);
+}
+
+.carta.sbagliata .segno { color: #dc2626; font-size: 1.4rem; font-weight: 800; }
 
 .esito {
-  margin: 0 20px 14px;
-  padding: 12px 16px;
-  max-width: 760px;
+  margin: 0 auto 16px;
+  padding: 16px 20px;
+  max-width: 800px;
   background: var(--carta);
-  border: 1px solid var(--bordo);
+  border: 2px solid var(--accento);
   border-radius: var(--raggio);
-  font-size: 1.05rem;
+  box-shadow: var(--ombra);
+  font-size: 1.08rem;
+  font-weight: 600;
+  animation: entra-dal-basso .3s ease both;
 }
 
 /* ---------------- piede ---------------- */
 
 .pie {
-  padding: 16px 20px 30px;
+  padding: 18px 24px 34px;
   color: var(--inchiostro-tenue);
-  font-size: .85rem;
+  font-size: .88rem;
   text-align: center;
 }
 
 .pie code {
   background: #fff;
   border: 1px solid var(--bordo);
-  border-radius: 4px;
-  padding: 1px 5px;
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-weight: 600;
+  color: var(--accento);
 }
 
 /* ---------------- schermi piccoli ---------------- */
 
 @media (max-width: 600px) {
-  .testata h1 { font-size: 1.25rem; }
-  .tela { height: 360px; }
-  .strumenti { gap: 10px; }
+  .testata { padding: 18px 16px 20px; }
+  .strumenti { padding: 16px 16px 8px; gap: 10px; }
+  .cornice { margin: 0 12px 20px; }
+  .aiuto { margin: 4px 16px 12px; }
+  .carte { padding: 0 12px; }
+  .scheda-anno { font-size: 2.6rem; }
+}
+
+/* chi preferisce meno movimento non vede le animazioni */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }
