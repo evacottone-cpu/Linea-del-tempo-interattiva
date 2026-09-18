@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Il Seicento in Europa e in America</title>
+<link rel="stylesheet" href="stile.css">
+</head>
+<body>
+
+<header class="testata">
+  <div>
+    <h1>Il Seicento in Europa e in America</h1>
+    <p class="sottotitolo">Storia ed economia, 1600 &ndash; 1700</p>
+  </div>
+  <nav class="modi">
+    <button id="btn-linea" class="modo attivo" type="button">Linea del tempo</button>
+    <button id="btn-quiz" class="modo" type="button">Modalit&agrave; quiz</button>
+  </nav>
+</header>
+
+<!-- ===================== LINEA DEL TEMPO ===================== -->
+<section id="vista-linea">
+
+  <div class="strumenti">
+    <div class="gruppo">
+      <span class="etichetta-gruppo">Mostra:</span>
+      <div id="filtri" class="filtri"><!-- i pulsanti dei filtri li crea app.js --></div>
+    </div>
+    <div class="gruppo">
+      <span class="etichetta-gruppo">Ingrandimento:</span>
+      <button id="zoom-meno" class="tondo" type="button" aria-label="Rimpicciolisci">&minus;</button>
+      <button id="zoom-piu" class="tondo" type="button" aria-label="Ingrandisci">+</button>
+      <button id="zoom-tutto" class="piccolo" type="button">Vedi tutto</button>
+    </div>
+  </div>
+
+  <p class="aiuto">
+    Trascina la linea per scorrere, oppure usa la rotellina del mouse.
+    Clicca un evento per leggere la scheda.
+  </p>
+
+  <div id="cornice" class="cornice">
+    <div id="tela" class="tela">
+      <div id="asse" class="asse"></div>
+      <div id="tacche"></div>
+      <div id="eventi"></div>
+    </div>
+  </div>
+
+  <p id="messaggio" class="messaggio" hidden></p>
+
+</section>
+
+<!-- ===================== QUIZ ===================== -->
+<section id="vista-quiz" hidden>
+
+  <div class="strumenti">
+    <div class="gruppo">
+      <span class="etichetta-gruppo">Quante carte:</span>
+      <select id="numero-carte">
+        <option value="4">4</option>
+        <option value="6" selected>6</option>
+        <option value="8">8</option>
+      </select>
+      <button id="btn-nuova" class="piccolo" type="button">Nuova partita</button>
+    </div>
+    <div class="gruppo">
+      <button id="btn-controlla" class="principale" type="button">Controlla l&rsquo;ordine</button>
+    </div>
+  </div>
+
+  <p class="aiuto">
+    Gli anni sono nascosti. Metti le carte in ordine dalla pi&ugrave; antica (in alto)
+    alla pi&ugrave; recente (in basso): trascinale con il mouse oppure usa le frecce
+    &uarr; e &darr; di ogni carta. Poi premi &laquo;Controlla l&rsquo;ordine&raquo;.
+  </p>
+
+  <p id="esito" class="esito" hidden></p>
+  <ol id="carte" class="carte"></ol>
+
+</section>
+
+<!-- ===================== SCHEDA DELL'EVENTO ===================== -->
+<div id="velo" class="velo" hidden></div>
+<aside id="scheda" class="scheda" hidden aria-label="Scheda dell'evento">
+  <button id="chiudi-scheda" class="chiudi" type="button" aria-label="Chiudi la scheda">&times;</button>
+  <p id="scheda-anno" class="scheda-anno"></p>
+  <h2 id="scheda-titolo"></h2>
+  <p id="scheda-categoria" class="scheda-categoria"></p>
+  <p id="scheda-descrizione" class="scheda-descrizione"></p>
+</aside>
+
+<footer class="pie">
+  <p>I contenuti si modificano nel file <code>eventi.txt</code>, una riga per evento.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

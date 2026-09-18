@@ -1,0 +1,409 @@
+/* =========================================================
+   Linea del tempo interattiva - foglio di stile
+   Nessuna libreria esterna: solo CSS scritto a mano.
+   ========================================================= */
+
+:root {
+  --carta: #ffffff;
+  --sfondo: #f4f1ea;
+  --inchiostro: #2b2a26;
+  --inchiostro-tenue: #6b675e;
+  --bordo: #ded8cb;
+  --ombra: 0 1px 3px rgba(0,0,0,.12), 0 6px 18px rgba(0,0,0,.06);
+  --raggio: 10px;
+  --accento: #7a4a2b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--sfondo);
+  color: var(--inchiostro);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.5;
+}
+
+/* ---------------- testata ---------------- */
+
+.testata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  background: var(--carta);
+  border-bottom: 3px solid var(--accento);
+}
+
+.testata h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: .2px;
+}
+
+.sottotitolo {
+  margin: 2px 0 0;
+  color: var(--inchiostro-tenue);
+  font-style: italic;
+}
+
+.modi { display: flex; gap: 8px; }
+
+/* ---------------- pulsanti ---------------- */
+
+button, select {
+  font-family: inherit;
+  font-size: .95rem;
+  color: var(--inchiostro);
+  background: var(--carta);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  padding: 7px 14px;
+  cursor: pointer;
+}
+
+button:hover, select:hover { border-color: var(--accento); }
+
+button:focus-visible, select:focus-visible, .evento:focus-visible {
+  outline: 3px solid var(--accento);
+  outline-offset: 2px;
+}
+
+.modo.attivo {
+  background: var(--accento);
+  border-color: var(--accento);
+  color: #fff;
+}
+
+.tondo {
+  width: 36px; height: 36px;
+  padding: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.piccolo { padding: 6px 10px; font-size: .85rem; }
+
+.principale {
+  background: var(--accento);
+  border-color: var(--accento);
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* ---------------- barra degli strumenti ---------------- */
+
+.strumenti {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px 6px;
+}
+
+.gruppo { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+.etichetta-gruppo {
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--inchiostro-tenue);
+}
+
+.filtri { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* pulsante di filtro: pallino colorato + nome della categoria */
+.filtro {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: 999px;
+  padding: 5px 13px 5px 9px;
+}
+
+.filtro::before {
+  content: "";
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: var(--colore);
+}
+
+.filtro.spento { opacity: .42; text-decoration: line-through; }
+
+.aiuto {
+  margin: 4px 20px 10px;
+  color: var(--inchiostro-tenue);
+  font-size: .9rem;
+  font-style: italic;
+}
+
+/* ---------------- la linea del tempo ---------------- */
+
+.cornice {
+  position: relative;
+  margin: 0 20px 24px;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 62vh;
+  background: var(--carta);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  box-shadow: var(--ombra);
+  cursor: grab;
+}
+
+.cornice.trascino { cursor: grabbing; }
+
+.tela { position: relative; min-height: 300px; }
+
+/* il filo orizzontale del tempo */
+.asse {
+  position: absolute;
+  left: 0; right: 0; top: 54px;
+  height: 3px;
+  background: var(--accento);
+  opacity: .5;
+}
+
+.tacca {
+  position: absolute;
+  top: 20px;
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--inchiostro-tenue);
+  font-size: .8rem;
+  white-space: nowrap;
+}
+
+.tacca::after {
+  content: "";
+  display: block;
+  width: 1px; height: 14px;
+  margin: 4px auto 0;
+  background: var(--bordo);
+}
+
+/* filo verticale che collega la cartellina all'anno esatto */
+.stelo {
+  position: absolute;
+  width: 2px;
+  background: var(--colore);
+  opacity: .45;
+}
+
+.punto {
+  position: absolute;
+  width: 9px; height: 9px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: var(--colore);
+  border: 2px solid var(--carta);
+}
+
+/* cartellina di un evento */
+.evento {
+  position: absolute;
+  width: 178px;
+  text-align: left;
+  padding: 8px 10px;
+  background: var(--carta);
+  border: 1px solid var(--bordo);
+  border-left: 5px solid var(--colore);
+  border-radius: 8px;
+  box-shadow: var(--ombra);
+  transition: transform .12s ease;
+}
+
+.evento:hover { transform: translateY(-2px); }
+
+.evento .anno {
+  display: block;
+  font-size: .82rem;
+  font-weight: bold;
+  color: var(--colore);
+  letter-spacing: .06em;
+}
+
+.evento .titolo {
+  display: block;
+  font-size: .92rem;
+  line-height: 1.25;
+  margin-top: 2px;
+  /* al massimo tre righe, poi i puntini */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* quando si nascondono gli anni (usato anche dal quiz) */
+.senza-anni .evento .anno,
+.senza-anni .tacca { visibility: hidden; }
+
+.messaggio {
+  margin: 0 20px 24px;
+  padding: 14px 16px;
+  background: #fff6e0;
+  border: 1px solid #e3cf9a;
+  border-radius: var(--raggio);
+}
+
+/* ---------------- scheda dell'evento ---------------- */
+
+.velo {
+  position: fixed;
+  inset: 0;
+  background: rgba(20,18,14,.45);
+  z-index: 10;
+}
+
+.scheda {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(420px, 92vw);
+  z-index: 11;
+  overflow-y: auto;
+  padding: 26px 26px 40px;
+  background: var(--carta);
+  border-left: 8px solid var(--colore, var(--accento));
+  box-shadow: -8px 0 28px rgba(0,0,0,.18);
+}
+
+.chiudi {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 34px; height: 34px;
+  padding: 0;
+  font-size: 1.4rem;
+  line-height: 1;
+  border-radius: 50%;
+}
+
+.scheda-anno {
+  margin: 6px 0 0;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: var(--colore, var(--accento));
+}
+
+.scheda h2 { margin: 4px 0 10px; font-size: 1.35rem; line-height: 1.25; }
+
+.scheda-categoria {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--colore, var(--accento));
+  color: #fff;
+  font-size: .82rem;
+  letter-spacing: .05em;
+}
+
+.scheda-descrizione { margin: 0; font-size: 1.02rem; }
+
+/* ---------------- quiz ---------------- */
+
+.carte {
+  list-style: none;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+  max-width: 760px;
+}
+
+.carta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 12px 14px;
+  background: var(--carta);
+  border: 1px solid var(--bordo);
+  border-left: 6px solid var(--colore);
+  border-radius: var(--raggio);
+  box-shadow: var(--ombra);
+  cursor: grab;
+}
+
+.carta.in-volo { opacity: .35; }
+
+.carta .presa {
+  color: var(--inchiostro-tenue);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  cursor: grab;
+}
+
+.carta .testo { flex: 1; }
+
+.carta .titolo-carta { font-size: 1rem; }
+
+.carta .categoria-carta {
+  display: block;
+  font-size: .8rem;
+  color: var(--colore);
+  letter-spacing: .05em;
+}
+
+.carta .anno-svelato {
+  font-weight: bold;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+.carta .frecce { display: flex; flex-direction: column; gap: 4px; }
+
+.carta .frecce button {
+  width: 30px; height: 24px;
+  padding: 0;
+  font-size: .8rem;
+  line-height: 1;
+}
+
+.carta.giusta { border-color: #2e7d4f; background: #f1f9f3; }
+.carta.giusta .segno { color: #2e7d4f; font-size: 1.2rem; }
+.carta.sbagliata { border-color: #b23b3b; background: #fdf3f2; }
+.carta.sbagliata .segno { color: #b23b3b; font-size: 1.2rem; }
+
+.segnaposto {
+  height: 10px;
+  margin-bottom: 10px;
+  border: 2px dashed var(--accento);
+  border-radius: 6px;
+}
+
+.esito {
+  margin: 0 20px 14px;
+  padding: 12px 16px;
+  max-width: 760px;
+  background: var(--carta);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  font-size: 1.05rem;
+}
+
+/* ---------------- piede ---------------- */
+
+.pie {
+  padding: 16px 20px 30px;
+  color: var(--inchiostro-tenue);
+  font-size: .85rem;
+  text-align: center;
+}
+
+.pie code {
+  background: #fff;
+  border: 1px solid var(--bordo);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+/* ---------------- schermi piccoli ---------------- */
+
+@media (max-width: 600px) {
+  .testata h1 { font-size: 1.25rem; }
+  .tela { height: 360px; }
+  .strumenti { gap: 10px; }
+}
