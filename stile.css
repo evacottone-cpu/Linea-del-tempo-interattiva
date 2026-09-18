@@ -327,13 +327,23 @@ button:focus-visible, select:focus-visible, .evento:focus-visible {
   cursor: grab;
 }
 
-.carta.in-volo { opacity: .35; }
+/* la carta che si sta trascinando */
+.carta.in-volo {
+  position: relative;
+  z-index: 5;
+  cursor: grabbing;
+  box-shadow: 0 10px 22px rgba(0,0,0,.22);
+  transform-origin: center;
+}
 
 .carta .presa {
   color: var(--inchiostro-tenue);
   font-size: 1.1rem;
   letter-spacing: 2px;
   cursor: grab;
+  padding: 4px 2px;
+  /* con il dito questa maniglia trascina invece di far scorrere la pagina */
+  touch-action: none;
 }
 
 .carta .testo { flex: 1; }

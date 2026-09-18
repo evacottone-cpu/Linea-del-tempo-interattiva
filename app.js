@@ -411,7 +411,6 @@ function disegnaCarte() {
   carteInGioco.forEach((evento) => {
     const li = document.createElement('li');
     li.className = 'carta';
-    li.draggable = true;
     li.style.setProperty('--colore', coloreDi[evento.categoria]);
     li.dataset.anno = evento.anno;
 
@@ -457,45 +456,73 @@ function pulisciSegni() {
   $('esito').hidden = true;
 }
 
-/* trascinamento delle carte del quiz */
+/* Trascinamento delle carte del quiz.
+   Usiamo i "pointer": così funziona allo stesso modo con il mouse,
+   con il dito sul tablet e con la penna della LIM. */
 function abilitaTrascinamentoCarte() {
   const lista = $('carte');
-  let inVolo = null;
+  let carta = null;      // la carta che sto trascinando
+  let partenzaY = 0;     // dove ho premuto
+  let spostata = false;
 
-  lista.addEventListener('dragstart', (e) => {
-    inVolo = e.target.closest('.carta');
-    if (!inVolo) return;
-    inVolo.classList.add('in-volo');
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/plain', '');   // serve a Firefox
+  lista.addEventListener('pointerdown', (e) => {
+    /* i clic sulle frecce non devono avviare il trascinamento */
+    if (e.target.closest('button')) return;
+
+    /* con il dito si trascina solo dalla maniglia a sinistra,
+       così il resto della carta serve ancora a scorrere la pagina */
+    const dallaManiglia = !!e.target.closest('.presa');
+    if (e.pointerType === 'touch' && !dallaManiglia) return;
+
+    carta = e.target.closest('.carta');
+    if (!carta) return;
+
+    partenzaY = e.clientY;
+    spostata = false;
+    carta.setPointerCapture(e.pointerId);
+    carta.classList.add('in-volo');
   });
 
-  lista.addEventListener('dragover', (e) => {
-    if (!inVolo) return;
+  lista.addEventListener('pointermove', (e) => {
+    if (!carta) return;
     e.preventDefault();
-    const sotto = cartaPiuVicina(lista, e.clientY);
-    if (sotto === null) lista.appendChild(inVolo);
-    else lista.insertBefore(inVolo, sotto);
+
+    let scarto = e.clientY - partenzaY;
+    if (Math.abs(scarto) > 3) spostata = true;
+
+    /* se ho superato la metà della carta vicina, faccio lo scambio */
+    const sopra = carta.previousElementSibling;
+    const sotto = carta.nextElementSibling;
+
+    if (sopra && scarto < -sopra.offsetHeight / 2) {
+      partenzaY += scambia(carta, () => lista.insertBefore(carta, sopra));
+      scarto = e.clientY - partenzaY;
+    } else if (sotto && scarto > sotto.offsetHeight / 2) {
+      partenzaY += scambia(carta, () => lista.insertBefore(sotto, carta));
+      scarto = e.clientY - partenzaY;
+    }
+
+    carta.style.transform = 'translateY(' + scarto + 'px)';
   });
 
-  lista.addEventListener('drop', (e) => e.preventDefault());
+  const lascia = () => {
+    if (!carta) return;
+    carta.style.transform = '';
+    carta.classList.remove('in-volo');
+    carta = null;
+    if (spostata) pulisciSegni();
+  };
 
-  lista.addEventListener('dragend', () => {
-    if (!inVolo) return;
-    inVolo.classList.remove('in-volo');
-    inVolo = null;
-    pulisciSegni();
-  });
+  lista.addEventListener('pointerup', lascia);
+  lista.addEventListener('pointercancel', lascia);
 }
 
-/* quale carta sta sotto il puntatore? */
-function cartaPiuVicina(lista, y) {
-  const altre = [...lista.querySelectorAll('.carta:not(.in-volo)')];
-  for (const carta of altre) {
-    const bordo = carta.getBoundingClientRect();
-    if (y < bordo.top + bordo.height / 2) return carta;
-  }
-  return null;
+/* Sposta la carta nell'elenco e restituisce di quanto si è alzata o
+   abbassata, così possiamo correggere il conto e non farla "saltare". */
+function scambia(carta, mossa) {
+  const prima = carta.offsetTop;
+  mossa();
+  return carta.offsetTop - prima;
 }
 
 function controllaOrdine() {
@@ -527,7 +554,8 @@ function controllaOrdine() {
   esito.hidden = false;
   esito.textContent = giuste === carte.length
     ? 'Perfetto! Tutte e ' + carte.length + ' le carte sono al posto giusto.'
-    : 'Hai messo al posto giusto ' + giuste + ' carte su ' + carte.length +
+    : 'Hai messo al posto giusto ' + giuste +
+      (giuste === 1 ? ' carta' : ' carte') + ' su ' + carte.length +
       '. Sposta quelle segnate con ✗ e prova di nuovo.';
 }
 
