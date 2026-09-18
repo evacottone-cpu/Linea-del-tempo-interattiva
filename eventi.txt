@@ -1,0 +1,92 @@
+# ==========================================================
+#  EVENTI DELLA LINEA DEL TEMPO
+#  Il Seicento in Europa e in America: storia ed economia
+# ==========================================================
+#
+# COME SI SCRIVE UN EVENTO
+# Un evento per riga, con quattro parti separate dalla barra
+# verticale "|" (si scrive con AltGr + il tasto a destra della L):
+#
+#   anno | titolo | descrizione | categoria
+#
+# Esempio:
+#   1607 | Nasce Jamestown | Primo insediamento inglese... | Americhe
+#
+# REGOLE SEMPLICI
+# - Le righe che iniziano con # sono note per te: il sito le salta.
+# - Le righe vuote vengono ignorate: usale pure per dare respiro.
+# - Gli spazi prima e dopo la barra non contano.
+# - L'anno deve essere solo un numero (per esempio 1648).
+# - Non usare il simbolo | dentro il titolo o la descrizione.
+# - L'ordine delle righe non conta: il sito mette tutto in ordine di anno.
+#
+# LE CATEGORIE
+# La categoria è l'ultima parte della riga e serve per i colori
+# e per i filtri. Qui usiamo queste quattro:
+#   Economia  -  Politica  -  Guerre  -  Americhe
+# Puoi inventarne di nuove: basta scriverle e il sito aggiunge
+# da solo il colore e il pulsante per filtrarle.
+#
+# ==========================================================
+
+
+# --- L'inizio del secolo: nascono le grandi compagnie ---
+
+1600 | Nasce la Compagnia inglese delle Indie Orientali | Il 31 dicembre la regina Elisabetta I firma il documento che autorizza un gruppo di mercanti di Londra a commerciare con l'Asia. È una società privata che con il tempo arriverà a governare territori e a mantenere eserciti. | Economia
+
+1602 | Nasce la Compagnia olandese delle Indie Orientali (VOC) | Il 20 marzo le città olandesi uniscono i loro mercanti in un'unica compagnia. È la prima società per azioni della storia: chiunque può comprare una quota e rivenderla ad altri ad Amsterdam. Da qui nasce la borsa moderna. | Economia
+
+1607 | Fondazione di Jamestown in Virginia | Il 14 maggio un gruppo di coloni inglesi fonda in Virginia il primo insediamento inglese stabile in America del Nord. I primi anni sono durissimi per fame e malattie: la colonia sopravvive grazie alla coltivazione del tabacco. | Americhe
+
+1609 | Nasce il Banco di Amsterdam | Il 31 gennaio la città di Amsterdam apre una banca pubblica dove i mercanti depositano monete di ogni paese e poi pagano con semplici scritture nei registri. Il commercio diventa più rapido e sicuro: Amsterdam è il centro finanziario d'Europa. | Economia
+
+1610 | Assassinio di Enrico IV di Francia | Il 14 maggio il re di Francia viene ucciso a Parigi da François Ravaillac. Enrico IV aveva chiuso le guerre di religione con l'Editto di Nantes; con la sua morte la Francia torna in una fase di instabilità. | Politica
+
+
+# --- La Guerra dei Trent'anni e le colonie americane ---
+
+1618 | Defenestrazione di Praga | Il 23 maggio i nobili boemi protestanti gettano dalla finestra del castello di Praga due rappresentanti dell'imperatore cattolico. È la scintilla della Guerra dei Trent'anni, che devasterà l'Europa centrale fino al 1648. | Guerre
+
+1619 | I primi africani ridotti in schiavitù arrivano in Virginia | Nell'agosto una nave corsara inglese sbarca a Point Comfort una ventina di africani catturati a bordo di una nave portoghese e li cede ai coloni. È l'inizio della schiavitù nelle colonie inglesi del Nord America. | Americhe
+
+1620 | La Mayflower e la colonia di Plymouth | In novembre circa cento passeggeri, tra cui un gruppo di puritani inglesi, sbarcano sulla costa del Massachusetts. Prima di scendere a terra firmano il Mayflower Compact, un patto con cui si impegnano a darsi leggi comuni. | Americhe
+
+1621 | Nasce la Compagnia olandese delle Indie Occidentali | Il 3 giugno gli olandesi fondano la compagnia incaricata di commerciare con l'Africa e con le Americhe. Si occuperà di zucchero, pellicce e tratta degli schiavi, e darà battaglia alle flotte spagnole e portoghesi. | Economia
+
+1624 | Richelieu al governo della Francia | In agosto il cardinale Richelieu diventa il ministro principale di Luigi XIII. Rafforza il potere del re contro i nobili, aumenta le tasse e porta la Francia nella Guerra dei Trent'anni contro gli Asburgo. | Politica
+
+1626 | Gli olandesi si insediano a Manhattan | Il governatore Peter Minuit ottiene dagli indigeni Lenape l'isola di Manhattan in cambio di merci del valore di 60 fiorini. Nasce Nuova Amsterdam, porto per il commercio delle pellicce. | Americhe
+
+1628 | Piet Heyn cattura la flotta d'argento spagnola | L'8 settembre, nella baia di Matanzas a Cuba, le navi della Compagnia olandese delle Indie Occidentali catturano la flotta che portava in Spagna l'argento americano. È un colpo durissimo per le finanze del re di Spagna. | Economia
+
+1630 | Nasce la colonia della Baia del Massachusetts | Un migliaio di puritani guidati da John Winthrop sbarca in Nuova Inghilterra e fonda Boston. Comincia la "grande migrazione": in dieci anni circa ventimila inglesi attraversano l'Atlantico. | Americhe
+
+1637 | Scoppia la bolla dei tulipani in Olanda | Nel febbraio i prezzi dei bulbi di tulipano, saliti a cifre altissime, crollano di colpo. È la prima crisi speculativa raccontata in modo dettagliato dai documenti, e viene ancora studiata come esempio di bolla finanziaria. | Economia
+
+
+# --- Metà secolo: rivoluzioni, paci e regole del commercio ---
+
+1640 | Il Portogallo si separa dalla Spagna | Il 1 dicembre una rivolta a Lisbona porta sul trono il duca di Braganza con il nome di Giovanni IV. Dopo sessant'anni di unione con la Spagna il Portogallo torna indipendente e riprende il controllo di gran parte del suo impero commerciale. | Politica
+
+1642 | Comincia la guerra civile inglese | Il 22 agosto Carlo I alza il suo stendardo a Nottingham contro il Parlamento. Lo scontro nasce da tasse imposte senza il consenso del Parlamento e da contrasti religiosi, e divide il paese per quasi dieci anni. | Guerre
+
+1648 | Pace di Vestfalia | Il 24 ottobre i trattati firmati a Münster e Osnabrück chiudono la Guerra dei Trent'anni. La Spagna riconosce l'indipendenza delle Province Unite olandesi e gli stati europei accettano di trattare da pari, ciascuno padrone in casa propria. | Guerre
+
+1649 | Esecuzione di Carlo I d'Inghilterra | Il 30 gennaio il re viene decapitato a Londra dopo un processo voluto dal Parlamento. Per la prima volta un sovrano europeo viene giudicato e condannato dai suoi sudditi: l'Inghilterra diventa per alcuni anni una repubblica. | Politica
+
+1651 | Atto di Navigazione inglese | In ottobre il Parlamento stabilisce che le merci dirette in Inghilterra viaggino su navi inglesi oppure del paese di origine. La norma colpisce i trasportatori olandesi e apre una lunga serie di guerre commerciali fra le due potenze marittime. | Economia
+
+1661 | Luigi XIV governa da solo e sceglie Colbert | Alla morte del cardinale Mazzarino, in marzo, il re decide di non nominare un primo ministro. Affida le finanze a Jean-Baptiste Colbert, che sostiene le manifatture francesi, protegge i prodotti nazionali con i dazi e rimette in ordine i conti dello stato. | Politica
+
+1664 | Nuova Amsterdam diventa New York | In settembre una flotta inglese si presenta nel porto e ottiene la resa della colonia olandese senza combattere. La città viene ribattezzata New York in onore del duca di York, fratello del re d'Inghilterra. | Americhe
+
+
+# --- Fine secolo: banche, diritti e nuovi equilibri ---
+
+1670 | Nasce la Compagnia della Baia di Hudson | Il 2 maggio Carlo II concede a un gruppo di mercanti il monopolio del commercio nell'enorme bacino della Baia di Hudson, in Canada. Le pellicce di castoro diventano uno degli affari più ricchi del Nord America. | Economia
+
+1685 | Revoca dell'Editto di Nantes | Il 18 ottobre Luigi XIV cancella la libertà di culto concessa ai protestanti francesi. Circa duecentomila ugonotti lasciano la Francia portando mestieri e capitali in Olanda, Inghilterra, Svizzera e Prussia. | Politica
+
+1688 | La Gloriosa Rivoluzione in Inghilterra | Il 5 novembre Guglielmo d'Orange sbarca in Inghilterra su invito di una parte del Parlamento e il re Giacomo II fugge in Francia senza combattere. Il potere del sovrano viene limitato per legge e nel 1689 il Bill of Rights fissa i diritti del Parlamento. | Politica
+
+1694 | Nasce la Banca d'Inghilterra | Il 27 luglio viene fondata a Londra una banca che presta denaro allo stato in cambio del diritto di emettere biglietti. Lo stato può così finanziare le guerre con il debito pubblico: è la nascita della finanza pubblica moderna. | Economia
